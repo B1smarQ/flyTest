@@ -25,7 +25,7 @@ function App() {
       return Promise.reject(new Error('failed to parse'));
     }
     const data = response.json();
-    setTests(data);
+    setTests(data.PromiseResult);
     
   }
   function getAnswers(){
