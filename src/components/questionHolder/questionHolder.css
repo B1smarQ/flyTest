@@ -1,0 +1,19 @@
+.questions{
+    display: flex;
+    flex-direction:column;
+    width:60%;
+    align-items: center;
+
+}
+.questions >*{
+    border: solid 1px black;
+    width:100%;
+    margin-bottom: 20px;
+    margin-left:10px;
+}
+.questions{
+    font-size:2em;
+}
+.question{
+    padding-left:20px;
+}
