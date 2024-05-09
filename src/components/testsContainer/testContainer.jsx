@@ -1,15 +1,18 @@
 import { useState } from "react"
 import TestElement from "../testElement/testElement"
 import './testContainer.css'
-
-
+import {tests} from '../../test.js'
+import { BrowserRouter, Link } from "react-router-dom"
 export default function TestContainer({tests}){
-    const [test,setTest] = useState(tests)
+    const test = tests;
     return(
         <div id="testContainer">
             {test.map((t) =>{
                 return(
-                    <TestElement name = {t.name} key = {t.id}/>
+                    
+                    <TestElement testid = {t.id} name = {t.name} key = {t.id}/>
+                    
+                    
                 )
             }
         )}
