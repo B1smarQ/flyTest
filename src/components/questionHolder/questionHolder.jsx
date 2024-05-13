@@ -3,6 +3,7 @@ import './questionHolder.css'
 import Button from '../Button/Button.jsx';
 import { useState, useEffect, useRef, createRef } from 'react';
 import axios from 'axios';
+import QuestionGrid from '../questions_grid/questionGrid';
 export default function QuestionHolder({questions, testId}){
   const quests = questions;
   let [time,setTime] = useState(0);
@@ -26,14 +27,25 @@ export default function QuestionHolder({questions, testId}){
     }
     
     let ans_arr = document.getElementsByClassName('question');
+    let obj = {};
+    for(let j of ans_arr)
+      for ( let i of j.children){
+        
+        
+          if(i.checked){
+            obj.questionId = j.attributes[1].value;
+            obj.answerId = i.attributes[1].value;
+            
+            testanswers.answers.push(obj);
+          }
+
+        
+      }
+      if(testanswers.answers.length<questions.length){
+        alert('Вы ответили не на все вопросы');
+        return;
+      }
     
-    for ( let i of ans_arr){
-      let obj = {};
-      obj.questionId = i.attributes[1].value;
-      obj.answerId = i.options[i.selectedIndex].value;
-      testanswers.answers.push(obj);
-    }
-    {
       try{
         let response = axios.post(API_POST_URL,{
                   
@@ -47,17 +59,22 @@ export default function QuestionHolder({questions, testId}){
         }).then(response =>console.log(response));
         
         
-        
+        setRunning(false);
     } catch(error){
       alert(error);
     }
- 
-  }
+    
+  
 }
   useEffect(()=>{
     return() =>clearInterval(timeInterval.current);
   },[])
-  
+  useEffect(() =>{
+    let questionUno = document.getElementById('0');
+    if (questionUno){
+      questionUno.style.display = 'block';
+    }
+  },[])
 
   useEffect(()=>{
     if(running){
@@ -74,11 +91,12 @@ export default function QuestionHolder({questions, testId}){
     method(event.target.value);
   }
     return(
-      <div className=  'quest_grid'>
+      <div className =  'quests_grid'>
+        <QuestionGrid questions = {questions}></QuestionGrid>
         <p>{hours}:{minutes}:{seconds} </p>
         {quests?.map((question) =>{
           return(
-            <Question question = {question} key = {question.id}/>
+            <Question question = {question} key = {question.id} internid = {quests.indexOf(question)}/>
           )
         })}
         <form id = 'QuestionForm' onSubmit = {getAnswers}>
@@ -89,7 +107,6 @@ export default function QuestionHolder({questions, testId}){
         <Button onClick = {()=>{
           if(name && group && email){
           getAnswers();
-          setRunning(false);
         }
         else{
           alert('Заполните все поля');

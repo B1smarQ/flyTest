@@ -1,0 +1,18 @@
+.quest_grid{
+    display: grid;
+    width:100dvw;
+    gap:1px;
+    grid-template-columns: repeat(20,50px);
+    margin:0;
+}
+.quest_grid div{
+    border:1px solid black;
+    margin:0;
+    padding:0;
+}
+.quest_grid div button{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+}

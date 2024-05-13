@@ -4,6 +4,7 @@ import TestPage from './test.jsx'
 import HomePage from './components/home.jsx'
 import AnalyticsPage from './analytics.jsx'
 import StudentPage from './student_stats.jsx'
+import WhiteboardPage from './components/whiteboard/whiteboard'
 function App() {
   return(
   <>
@@ -20,6 +21,7 @@ function App() {
       <Route path=  '*' element = {<Navigate to='/'/>}></Route>
       <Route path = '/analytics' element = {<AnalyticsPage/>}></Route>
       <Route path=  '/student/:id' element = {<StudentPage/>}></Route>
+      <Route path = '/whiteboard' element = {<WhiteboardPage/>}></Route>
     </Routes>
   </Router>
 
