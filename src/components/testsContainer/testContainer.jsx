@@ -5,6 +5,7 @@ import {tests} from '../../test.js'
 import { BrowserRouter, Link } from "react-router-dom"
 export default function TestContainer({tests}){
     const test = tests;
+    
     return(
         <div id="testContainer">
             {test.map((t) =>{

@@ -1,15 +1,9 @@
-import { useEffect,useState } from 'react'
 import './App.css'
-import {questions} from './question.js'
-import Button from './components/Button/Button.jsx'
-import { useRef } from'react'
-import debounce from 'debounce'
-import axios from 'axios'
-import TestContainer from './components/testsContainer/testContainer.jsx'
 import { BrowserRouter as Router, Route,Routes, Navigate } from 'react-router-dom'
 import TestPage from './test.jsx'
 import HomePage from './components/home.jsx'
 import AnalyticsPage from './analytics.jsx'
+import StudentPage from './student_stats.jsx'
 function App() {
   return(
   <>
@@ -25,6 +19,7 @@ function App() {
       </Route>
       <Route path=  '*' element = {<Navigate to='/'/>}></Route>
       <Route path = '/analytics' element = {<AnalyticsPage/>}></Route>
+      <Route path=  '/student/:id' element = {<StudentPage/>}></Route>
     </Routes>
   </Router>
 
